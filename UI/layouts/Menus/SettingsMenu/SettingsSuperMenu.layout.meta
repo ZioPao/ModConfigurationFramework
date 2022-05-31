@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{106E731DB709DA2C}UI/layouts/Menus/SettingsMenu/SettingsSuperMenu.layout"
+ Configurations {
+  LayoutResourceClass PC {
+  }
+  LayoutResourceClass XBOX_ONE : PC {
+  }
+  LayoutResourceClass XBOX_SERIES : PC {
+  }
+  LayoutResourceClass PS4 : PC {
+  }
+  LayoutResourceClass HEADLESS : PC {
+  }
+ }
+}

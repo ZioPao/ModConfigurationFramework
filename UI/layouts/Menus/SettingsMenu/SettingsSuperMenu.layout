@@ -1,0 +1,55 @@
+FrameWidgetClass {
+ Name "SettingsMenu"
+ {
+  BlurWidgetClass "{00000000E99E7D4A}" {
+   Prefab "{00000000E99E7D4A}"
+   Slot FrameWidgetSlot "{5488B961554C8ACC}" {
+    Anchor 0 0 1 1
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX -1820
+    OffsetRight 0
+    SizeY -1050
+    OffsetBottom 0
+   }
+   "Is Enabled" 0
+   "Is Visible" 0
+   IsPixelPerfect 0
+   Color 0.127 0.127 0.127 1
+   Intensity 0.4
+   "Smooth Border" 0 0 1600 0
+  }
+  OverlayWidgetClass "{589F0C0A8CE05C69}" {
+   Prefab "{589F0C0A8CE05C69}"
+   {
+    SizeLayoutWidgetClass "{589F093B48C39BEF}" {
+     Prefab "{589F093B48C39BEF}"
+     {
+      VerticalLayoutWidgetClass "{589F093B48C39BEC}" {
+       Prefab "{589F093B48C39BEC}"
+       {
+        VerticalLayoutWidgetClass "{589F093AB3EA94A2}" {
+         Prefab "{589F093AB3EA94A2}"
+         components {
+          SCR_TabViewComponent "{546B27D01CA8A38D}" {
+           m_aElements {
+            SCR_TabViewContent "{597ED7DB2085709B}" {
+             m_ElementLayout "{1D2D036656276993}UI/layouts/Menus/SettingsMenu/ModSettings.layout"
+             m_sTabButtonContent "Mods"
+            }
+           }
+          }
+         }
+         {
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}
