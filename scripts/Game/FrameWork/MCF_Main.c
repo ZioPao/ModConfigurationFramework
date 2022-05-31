@@ -31,12 +31,23 @@ class MCF_HandlerSingleMod : ScriptedWidgetComponent
 		VerticalLayoutWidget descriptionLayout = VerticalLayoutWidget.Cast(w.GetParent().GetParent().GetParent().FindAnyWidget("Description"));
 		//Print(TextWidget.Cast(w.FindAnyWidget("TextMod")).GetText());
 		
+		Widget oldWidget = descriptionLayout.GetChildren();
 		
 		
+		if (oldWidget)
+			descriptionLayout.RemoveChild(oldWidget);
 		
 		
+
+		Widget singleModMenu = GetGame().GetWorkspace().CreateWidgets(MCF_ListModMenu.MOD_BUTTON_PATH, descriptionLayout);
 		
-		//actionRowWidget = GetGame().GetWorkspace().CreateWidgets(MOD_BUTTON_PATH, m_wContentListLayout);
+		
+		TextWidget textWidget = TextWidget.Cast(singleModMenu.FindAnyWidget("TextMod"));
+		
+		TextWidget oldTextWidget = TextWidget.Cast(w.FindAnyWidget("TextMod"));
+
+		textWidget.SetText(oldTextWidget.GetText());
+
 
 		return true;
 		
@@ -54,7 +65,7 @@ class MCF_ListModMenu : SCR_SettingsSubMenuBase
 	ref map<string, float> variableList
 	ref array<ref SCR_WorkshopItem> enabledAddons;
 	
-	protected static const string MOD_BUTTON_PATH = "{26E6DFBB569CE75C}UI/layouts/ModButton.layout";
+	static const string MOD_BUTTON_PATH = "{26E6DFBB569CE75C}UI/layouts/ModButton.layout";
 	
 	// Widgets
 	protected VerticalLayoutWidget m_wContentListLayout;
