@@ -19,7 +19,7 @@ class ModSettingsBase: ModuleGameSettings
 class MCF_HandlerSingleMod : ScriptedWidgetComponent
 {
 	
-	
+	//todo make layout for single mod settings
 	
 
 
@@ -47,11 +47,28 @@ class MCF_HandlerSingleMod : ScriptedWidgetComponent
 		TextWidget oldTextWidget = TextWidget.Cast(w.FindAnyWidget("TextMod"));
 
 		textWidget.SetText(oldTextWidget.GetText());
+		
+		
 
 
 		return true;
 		
 	}
+	
+	
+	void ApplyChanges()
+	{
+		
+		//when we apply a setting, we need to reload the mod... or not? 
+		// no we don't need to reload anything if it's loaded directly from a json... but probably it'll be slower I guess?
+		// we'd probably need some kind of interface to load json ONCE at apply time and then forget about them at runtime 
+		
+		
+		// We'll make a callback to something connected to every compatible mod. That callback will start a re-read of changed values in the json
+		
+	}
+	
+	
 
 }
 
