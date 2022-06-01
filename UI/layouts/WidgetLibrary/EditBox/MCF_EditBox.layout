@@ -30,6 +30,7 @@ ButtonWidgetClass {
         OverlayWidgetClass "{5982B8461813F3DC}" {
          Name "OverlayPanel"
          Slot LayoutSlot "{5538C2059A570EB1}" {
+          Padding 300 0 0 0
           SizeMode Fill
          }
          Color 1 1 1 1

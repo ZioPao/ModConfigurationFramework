@@ -5,6 +5,12 @@ ButtonWidgetClass {
   Padding 4 4 4 4
  }
  Color 1 1 1 0
+ components {
+  ButtonComponent "{5983743087566829}" {
+   m_ColorButtonFocused 0.482 0.011 0.011 0.251
+   m_ColorButtonPressed 0.02 0.003 0.003 0.302
+  }
+ }
  {
   SizeLayoutWidgetClass "{597EFA936F5C81A1}" {
    Name "SizeLayout"
@@ -47,19 +53,22 @@ ButtonWidgetClass {
        Name "HorizontalLayout0"
        Slot OverlayWidgetSlot "{597EFA94DA48DD89}" {
         HorizontalAlign 0
+        Padding 25 0 0 0
        }
        {
         HorizontalLayoutWidgetClass "{597EFA94D18EDC1C}" {
          Name "Content"
          Slot LayoutSlot "{597EFA94D18EDFF2}" {
           HorizontalAlign 0
+          VerticalAlign 1
           SizeMode Fill
          }
          {
           SizeLayoutWidgetClass "{597EFA94C665067B}" {
            Name "TextSize"
            Slot LayoutSlot "{597EFA94C665065B}" {
-            HorizontalAlign 1
+            HorizontalAlign 0
+            VerticalAlign 1
            }
            AllowWidthOverride 1
            WidthOverride 100
