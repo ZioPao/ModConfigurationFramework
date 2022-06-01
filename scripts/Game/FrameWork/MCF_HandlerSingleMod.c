@@ -6,7 +6,7 @@ class MCF_HandlerSingleMod : ScriptedWidgetComponent
 	static const string MOD_SINGLE_SETTING_LAYOUT_PATH = "{271E5986CD528C3B}UI/layouts/WidgetLibrary/EditBox/MCF_EditBox.layout";
 	
 	ref map<string, string> modVariables;
-	
+	ref MCF_SettingsManager settingsManager
 	string modId;
 	
 	
@@ -44,13 +44,15 @@ class MCF_HandlerSingleMod : ScriptedWidgetComponent
 		
 		
 		
-		MCF_SettingsManager settingsManager = MCF_SettingsManager.GetInstance();
+		settingsManager = MCF_SettingsManager.GetInstance();
 		modVariables = settingsManager.GetModSettings(modId);	
 		
 		MCF_JsonManager jsonManager = settingsManager.GetJsonManager(modId);
 		//Print(modVariables);
 		
 		
+		if (modVariables.Count() <= 0)
+			Print("Mod Variables is 0");
 		
 
 		

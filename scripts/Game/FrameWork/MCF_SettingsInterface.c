@@ -2,7 +2,7 @@ class MCF_SettingsManager
 {
 	//Add callback to add a class? 
 	
-	static ref map<string, MCF_JsonManager> settingsList;
+	static ref map<string, ref MCF_JsonManager> settingsList;
 	protected static ref MCF_SettingsManager instance;
 	protected static bool toBeInit = true;
 	
@@ -29,7 +29,7 @@ class MCF_SettingsManager
 		if (toBeInit)
 		{
 			instance = new MCF_SettingsManager();
-			settingsList = new map<string, MCF_JsonManager>;
+			settingsList = new map<string, ref MCF_JsonManager>;
 			toBeInit = false;
 		}
 		
