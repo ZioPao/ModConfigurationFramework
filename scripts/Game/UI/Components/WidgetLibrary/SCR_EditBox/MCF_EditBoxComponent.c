@@ -4,15 +4,14 @@ class MCF_EditBoxComponent : SCR_EditBoxComponent
 
 	
 	MCF_JsonManager jsonManager;
-	string varValue;
 		
 	
 	map<string, string> m_variables;
 	
 	
-	void SetCurrentJsonManager(MCF_JsonManager jsonManager)
+	void SetCurrentJsonManager(MCF_JsonManager manager)
 	{
-		this.jsonManager = jsonManager;
+		this.jsonManager = manager;
 	}
 	
 	
