@@ -46,11 +46,13 @@ ButtonWidgetClass {
       HorizontalLayoutWidgetClass "{597EFA94DA48DDB6}" {
        Name "HorizontalLayout0"
        Slot OverlayWidgetSlot "{597EFA94DA48DD89}" {
+        HorizontalAlign 0
        }
        {
         HorizontalLayoutWidgetClass "{597EFA94D18EDC1C}" {
          Name "Content"
          Slot LayoutSlot "{597EFA94D18EDFF2}" {
+          HorizontalAlign 0
           SizeMode Fill
          }
          {

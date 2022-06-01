@@ -109,6 +109,12 @@ ButtonWidgetClass {
               SizeMode Fill
              }
              Clipping True
+             components {
+              EditBoxFilterComponent "{59837435A5270392}" {
+              }
+              SCR_EventHandlerComponent "{59837435DD1F7142}" {
+              }
+             }
              style blank
              "Font Size" 20
              "Use placeholder text" 1

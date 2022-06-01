@@ -3,11 +3,11 @@ class MCF_JsonManager: JsonApiStruct
 {
 
 	protected string settingsFileName;
-	
+	protected ref map<string, string> userFriendlyKeys;
+
 	
 	
 	ref array<string> keys;
-	ref array<string> userFriendlyKeys;
 	ref array<string> values;
 	ref array<string> types;
 
@@ -17,7 +17,7 @@ class MCF_JsonManager: JsonApiStruct
 		settingsFileName = fileName;
 		
 		keys = new array<string>();
-		userFriendlyKeys = new array<string>();
+		userFriendlyKeys = new map<string, string>();
 		values = new array<string>();
 		types = new array<string>();
 		
@@ -51,13 +51,18 @@ class MCF_JsonManager: JsonApiStruct
 
 	}
 	
-	void AddUserFriendlyVariableNames(array<string> userFriendlyStrings)
+	void SetUserFriendlyVariableNames(map<string, string> userFriendlyStrings)
 	{
 		userFriendlyKeys = userFriendlyStrings;
 		
-		PackToFile(settingsFileName);
+		//PackToFile(settingsFileName);
 	}
 	
+	
+	map<string, string> GetUserFriendlyVariableNames()
+	{
+		return userFriendlyKeys;
+	}
 	
 
 	

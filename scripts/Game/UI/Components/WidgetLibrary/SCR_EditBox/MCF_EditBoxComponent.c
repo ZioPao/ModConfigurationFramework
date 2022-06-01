@@ -4,10 +4,7 @@ class MCF_EditBoxComponent : SCR_EditBoxComponent
 
 	
 	MCF_JsonManager jsonManager;
-		
-	
-	map<string, string> m_variables;
-	
+			
 	
 	void SetCurrentJsonManager(MCF_JsonManager manager)
 	{
@@ -23,10 +20,6 @@ class MCF_EditBoxComponent : SCR_EditBoxComponent
 	}
 	
 	
-	void ReferenceModVariables(map<string, string> variables)
-	{
-		this.m_variables = variables;
-	}
 	
 	//------------------------------------------------------------------------------------------------
 	override protected void OnConfirm(Widget w)
@@ -42,13 +35,33 @@ class MCF_EditBoxComponent : SCR_EditBoxComponent
 		string currentValue = GetValue();
 		string currentText = GetLabel().GetText();
 		
+		map<string, string> userFriendlyAliases = jsonManager.GetUserFriendlyVariableNames();
+				
+		
+		string currentKey;
+		
+		foreach(string key, string value : userFriendlyAliases)
+		{
+			if (value == currentText)
+			{
+				currentKey = key;
+				break;
+				
+			}
+				
+
+		}
+		
+		
+		
+		
 		
 		int index = 0;
 		// get index 
 		foreach(string tempString : jsonManager.keys)
 		{
 		
-			if (tempString == currentText)
+			if (tempString == currentKey)
 				break;
 			
 			index++;

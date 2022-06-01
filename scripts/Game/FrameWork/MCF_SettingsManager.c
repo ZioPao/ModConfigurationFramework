@@ -7,18 +7,12 @@ class MCF_SettingsManager
 	protected static bool toBeInit = true;
 	
 	
-	string varTest;
-	
-	
 	
 	
 	//maybe init somewhere in the game code... Let's init it from BDR for now, but it's to be fixed before going public
-	
-	
 	void MCF_SettingsManager()
 	{
 		Print("SettingsManager initialized");
-		varTest = "initialized";
 	}
 	
 	
