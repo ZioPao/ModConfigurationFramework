@@ -1,5 +1,5 @@
 MetaFileClass {
- Name "{1D2D036656276994}UI/layouts/Menus/SettingsMenu/ModSettings.layout"
+ Name "{271E5986CD528C3B}UI/layouts/WidgetLibrary/EditBox/MCF_EditBox.layout"
  Configurations {
   LayoutResourceClass PC {
   }

@@ -5,43 +5,44 @@ HorizontalLayoutWidgetClass {
   }
  }
  {
-  ScrollLayoutWidgetClass "{597CDE8CA40EFA8F}" {
+  SizeLayoutWidgetClass "{5982714A18D97ACE}" {
    Name "ScrollLayout0"
    Slot LayoutSlot "{54890CCF4EB5C47F}" {
-    Padding 80 0 0 0
+    Padding 12 0 12 0
     SizeMode Fill
     FillWeight 1.5
    }
    Color 0.761 0.392 0.078 1
    {
-    VerticalLayoutWidgetClass "{597CDE8CA40EFA89}" {
+    VerticalLayoutWidgetClass "{5982714A18D97ACD}" {
      Name "Content"
      Slot AlignableSlot "{54890CCE9D51A05E}" {
       HorizontalAlign 3
       VerticalAlign 3
-      Padding -4 0 10 0
+      Padding 0 0 0 0
      }
      {
-      VerticalLayoutWidgetClass "{597CDE8CA40EFA88}" : "{FEEEB639F2735BA1}UI/layouts/Menus/SettingsMenu/CustomWidgets/SettingsTitle.layout" {
-       Name "TitleGeneral"
-       Slot LayoutSlot "{58B32278C99818F2}" {
-       }
-       components {
-        SCR_LabelComponent "{58B30C1A8E56F0FF}" {
-         m_sLabel "#AR-Settings_Title_General"
-        }
+      VerticalLayoutWidgetClass "{598277B3BCF7D78C}" {
+       Name "ModLabelLayout"
+       Slot LayoutSlot "{598277B3BCF7D774}" {
+        Padding 40 30 40 20
        }
        {
+        TextWidgetClass "{598277B3BFAA7E59}" {
+         Name "ModLabel"
+         Slot LayoutSlot "{598277B3BFAA7E38}" {
+         }
+        }
+       }
+      }
+      VerticalLayoutWidgetClass "{598294DEA1FD404F}" {
+       Name "SettingsLayout"
+       Slot LayoutSlot "{598277B3BCF7D774}" {
+        Padding 40 30 40 20
        }
       }
      }
     }
-   }
-  }
-  VerticalLayoutWidgetClass "{597CDE8CA40EFA9B}" {
-   Name "Description"
-   Slot LayoutSlot "{54890CCA1EA23AC0}" {
-    SizeMode Fill
    }
   }
  }

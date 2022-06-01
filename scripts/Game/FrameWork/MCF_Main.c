@@ -1,26 +1,19 @@
-class ModSettingsBase: ModuleGameSettings
-{
-	[Attribute()]
-	
-	
-	
-	// can be inherited, need to be an interface 
-	int speed;
-	
-	
-	
-	
-	
-}
-
-
-
-
 class MCF_HandlerSingleMod : ScriptedWidgetComponent
 {
 	
 	//todo make layout for single mod settings
+	static const string MOD_SETTINGS_LAYOUT_PATH = "{1D2D036656276994}UI/layouts/Menus/SettingsMenu/ModSettings.layout";
+	static const string MOD_SINGLE_SETTING_LAYOUT_PATH = "{271E5986CD528C3B}UI/layouts/WidgetLibrary/EditBox/MCF_EditBox.layout";
 	
+	ref map<string, string> modVariables;
+	
+	string modId;
+	
+	
+	void MCF_HandlerSingleMod(string modId)
+	{
+		this.modId = modId;
+	}
 
 
 	override bool OnClick(Widget w, int x, int y, int button)
@@ -39,19 +32,76 @@ class MCF_HandlerSingleMod : ScriptedWidgetComponent
 		
 		
 
-		Widget singleModMenu = GetGame().GetWorkspace().CreateWidgets(MCF_ListModMenu.MOD_BUTTON_PATH, descriptionLayout);
-		
-		
-		TextWidget textWidget = TextWidget.Cast(singleModMenu.FindAnyWidget("TextMod"));
-		
+		Widget singleModMenu = GetGame().GetWorkspace().CreateWidgets(MOD_SETTINGS_LAYOUT_PATH, descriptionLayout);
+		TextWidget modLabel = TextWidget.Cast(singleModMenu.FindAnyWidget("ModLabel"));
 		TextWidget oldTextWidget = TextWidget.Cast(w.FindAnyWidget("TextMod"));
+		string oldText = oldTextWidget.GetText();
+		modLabel.SetText(oldText);
 
-		textWidget.SetText(oldTextWidget.GetText());
 		
+		VerticalLayoutWidget settingsLayout = VerticalLayoutWidget.Cast(singleModMenu.FindAnyWidget("SettingsLayout"));
+		
+		
+		
+		
+		MCF_SettingsManager manager = MCF_SettingsManager.GetInstance();
+		
+		
+		Print(modId);
+		modVariables = manager.GetModSettings(modId);		//ONLY FOR Test;
+		Print(modVariables);
+		
+		
+		
+
+		
+		
+		foreach(string varName, string varValue : modVariables)
+		{
+			Widget tempWidget  = GetGame().GetWorkspace().CreateWidgets(MOD_SINGLE_SETTING_LAYOUT_PATH, settingsLayout);
+			MCF_EditBoxComponent editBoxComponent = MCF_EditBoxComponent.Cast(tempWidget.FindHandler(MCF_EditBoxComponent));
+			
+			Print(varName);
+			Print(varValue);
+			Print("__________");
+			
+			
+			editBoxComponent.ReferenceModVariables(modVariables);
+			
+			editBoxComponent.SetSetting(varName, varValue);
+			editBoxComponent.SetCurrentJsonManager(manager.GetJsonManager(modId));
+
+			
+		}
+		
+		
+		//VerticalLayoutWidget contentWidget = VerticalLayoutWidget.Cast(singleModMenu.FindAnyWidget("Content"));
+		
+		
+		//VerticalLayoutWidget temp = contentWidget.FindWidget("TitleGeneral");
+		
+		
+		//SCR_CustomLabelComponent currentLabelComponent = SCR_CustomLabelComponent.GetComponent("TitleGeneral", temp, false);
+		//currentLabelComponent.SetText(
+
+				
+		//labelComponent.GetComponent
+		
+
 		
 
 
 		return true;
+		
+	}
+	
+	
+	
+	void PopulateSettings(string modId)
+	{
+		// Search for correct json 
+		
+		
 		
 	}
 	
@@ -74,21 +124,157 @@ class MCF_HandlerSingleMod : ScriptedWidgetComponent
 
 
 
+
+
+
+
+// todo how the fuck do templates works in here
+class MCF_JsonManager: JsonApiStruct
+{
+
+	protected string settingsFileName;
+	
+	
+	
+	ref array<string> keys;
+	ref array<string> values;
+	ref array<string> types;
+
+		
+	void MCF_JsonManager(string fileName)
+	{
+		settingsFileName = fileName;
+		
+		keys = new array<string>();
+		values = new array<string>();
+		types = new array<string>();
+		
+			
+		RegV("keys");
+		RegV("values");
+		RegV("types");
+
+		if(LoadFromFile(settingsFileName))
+			Print("File loaded!");
+		else
+			Print("Loading failed");
+
+				
+	}
+	
+	
+	void RegisterMap(notnull map<string, string> testMap, string type)
+	{
+		
+		foreach (string key, string value : testMap)
+		{
+			keys.Insert(key);
+			values.Insert(value);
+			types.Insert(type);
+			
+		}
+		
+		PackToFile(settingsFileName)
+
+	}
+	
+	
+
+	
+	map<string, string> GetMapFromJson()
+	{
+		map<string, string> currentSettings = new map<string, string>();
+
+		
+		// todo add some kind of callback to reload map dynamically? 
+		for (int i = 0; i < keys.Count(); i++)
+			currentSettings.Insert(keys[i], values[i]);
+
+
+		return currentSettings;
+
+	
+	}
+	
+	void UpdateMap(notnull map<string, string> testMap)
+	{
+		values = {};		//reset values
+		
+		
+		foreach(string varName, string varValue : testMap)
+		{
+			values.Insert(varValue);
+		}
+		
+		
+			
+	}
+	
+	void SetDefaultValues()
+	{
+		//you need to override this!
+	}
+	
+	
+	string GetFileName()
+	{
+		return settingsFileName;
+	}
+	
+	
+	
+	
+	///////////////////////////
+	override void OnError( int errorCode )
+	{
+		Print("ERROR CODE " + errorCode.ToString());
+		
+	}
+	
+	override void OnSuccess( int errorCode )
+	{
+		Print("SUCCESS CODE " + errorCode.ToString());
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class MCF_ListModMenu : SCR_SettingsSubMenuBase
 {
 
 
-	//ef array<float> variableList;			//loads them as string and then cast them as correct value?
 	ref map<string, float> variableList
-	ref array<ref SCR_WorkshopItem> enabledAddons;
+	ref array< SCR_WorkshopItem> currentlyEnabledAddons;
 	
 	static const string MOD_BUTTON_PATH = "{26E6DFBB569CE75C}UI/layouts/ModButton.layout";
 	
 	// Widgets
 	protected VerticalLayoutWidget m_wContentListLayout;
 	
-	
-	
+
 	override void OnMenuOpen(SCR_SuperMenuBase parentMenu)
 	{
 		super.OnMenuOpen(parentMenu);
@@ -104,33 +290,53 @@ class MCF_ListModMenu : SCR_SettingsSubMenuBase
 		
 		
 		GetAllEnabledAddons();
-		Print(enabledAddons);
 		
 		
 		Widget actionRowWidget;
 
-		foreach(SCR_WorkshopItem x : enabledAddons)
+		foreach(SCR_WorkshopItem item: currentlyEnabledAddons)
 		{
 			actionRowWidget = GetGame().GetWorkspace().CreateWidgets(MOD_BUTTON_PATH, m_wContentListLayout);
 			
-			MCF_HandlerSingleMod handler = new MCF_HandlerSingleMod();
+			WorkshopItem temp = item.GetWorkshopItem();
+			
+			MCF_HandlerSingleMod handler = new MCF_HandlerSingleMod(temp.Id());
 			actionRowWidget.AddHandler(handler);
 			
 			TextWidget textWidget = TextWidget.Cast(actionRowWidget.FindAnyWidget("TextMod"));
-			textWidget.SetText(x.GetName());
+			textWidget.SetText(temp.Name());
 			
 		}
 
 		
 	}
+
 	
-	
-	
-	void InitModConfiguration()
+	void GetAllEnabledAddons()
 	{
-		variableList = new map<string, float>;		//will not work I know.
+		currentlyEnabledAddons = new array<SCR_WorkshopItem>;
+
+		if (!SCR_AddonManager.GetInstance())
+		{
+			Print("AddonManager is not initialized");
+			return;
+		}
+
+		array<ref SCR_WorkshopItem> ret = SCR_AddonManager.GetInstance().GetAllAddons();
 		
+		foreach (SCR_WorkshopItem item : ret)
+		{
+			if (item.GetEnabled())
+			{					
+				currentlyEnabledAddons.Insert(item);
+			}
+		}
+
+	
 	}
+	
+	
+		
 	
 	/*
 	void LoadModConfiguration(string modName, array<string> configSettings)
@@ -160,31 +366,6 @@ class MCF_ListModMenu : SCR_SettingsSubMenuBase
 	}
 	
 	*/	
-	
-	
-	void GetAllEnabledAddons()
-	{
-		
-		enabledAddons = {};
-
-		if (!SCR_AddonManager.GetInstance())
-		{
-			Print("AddonManager is not initialized");
-			return;
-		}
-
-		array<ref SCR_WorkshopItem> ret = SCR_AddonManager.GetInstance().GetAllAddons();
-		
-		foreach (SCR_WorkshopItem x : ret)
-		{
-			if (x.GetEnabled())
-			{	
-				enabledAddons.Insert(x);
-			}
-		}
-
-	
-	}
 
 
 

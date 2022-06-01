@@ -1,0 +1,48 @@
+HorizontalLayoutWidgetClass {
+ Name "ModSettings"
+ components {
+  MCF_ListModMenu "{597EFA90F4373E8A}" {
+  }
+ }
+ {
+  ScrollLayoutWidgetClass "{597CDE8CA40EFA8F}" {
+   Name "ScrollLayout0"
+   Slot LayoutSlot "{54890CCF4EB5C47F}" {
+    Padding 80 0 0 0
+    SizeMode Fill
+    FillWeight 1.5
+   }
+   Color 0.761 0.392 0.078 1
+   {
+    VerticalLayoutWidgetClass "{597CDE8CA40EFA89}" {
+     Name "Content"
+     Slot AlignableSlot "{54890CCE9D51A05E}" {
+      HorizontalAlign 3
+      VerticalAlign 3
+      Padding -4 0 10 0
+     }
+     {
+      VerticalLayoutWidgetClass "{597CDE8CA40EFA88}" : "{FEEEB639F2735BA1}UI/layouts/Menus/SettingsMenu/CustomWidgets/SettingsTitle.layout" {
+       Name "TitleGeneral"
+       Slot LayoutSlot "{58B32278C99818F2}" {
+       }
+       components {
+        SCR_LabelComponent "{58B30C1A8E56F0FF}" {
+         m_sLabel "#AR-Settings_Title_General"
+        }
+       }
+       {
+       }
+      }
+     }
+    }
+   }
+  }
+  VerticalLayoutWidgetClass "{597CDE8CA40EFA9B}" {
+   Name "Description"
+   Slot LayoutSlot "{54890CCA1EA23AC0}" {
+    SizeMode Fill
+   }
+  }
+ }
+}
