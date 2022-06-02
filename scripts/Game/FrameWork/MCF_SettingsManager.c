@@ -59,6 +59,12 @@ class MCF_SettingsManager
 		else
 			return temp.GetMapFromJson();
 
+	}
+	
+	
+	map<string, ref MCF_JsonManager> GetSettingsList()
+	{
+		return settingsList;
 	}	
 }
 

@@ -58,15 +58,27 @@ class MCF_ListModMenu : SCR_SettingsSubMenuBase
 			return;
 		}
 
+		
+		
+				
+		MCF_SettingsManager tempSettingsManager = MCF_SettingsManager.GetInstance();
+		
+		map<string, ref MCF_JsonManager> mapCurrentlyActiveMods = tempSettingsManager.GetSettingsList();
+	
+		
 		array<ref SCR_WorkshopItem> ret = SCR_AddonManager.GetInstance().GetAllAddons();
 		
 		foreach (SCR_WorkshopItem item : ret)
 		{
-			if (item.GetEnabled())
+			if (item.GetEnabled() && mapCurrentlyActiveMods.Get(item.GetId()))
 			{					
 				currentlyEnabledAddons.Insert(item);
 			}
 		}
+
+		
+		//we need to find compatible only mods!!
+		
 
 	
 	}
