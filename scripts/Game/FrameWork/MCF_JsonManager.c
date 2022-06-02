@@ -1,7 +1,10 @@
-// todo how the fuck do templates works in here
+/* MCF_JsonManager must be allocated for EACH mod. It's basically the container for your settings*/
 class MCF_JsonManager: JsonApiStruct
 {
 
+	
+	
+	
 	protected string settingsFileName;
 	protected ref map<string, string> userFriendlyKeys;
 
@@ -9,7 +12,6 @@ class MCF_JsonManager: JsonApiStruct
 	
 	ref array<string> keys;
 	ref array<string> values;
-	ref array<string> types;
 
 		
 	void MCF_JsonManager(string fileName)
@@ -19,13 +21,10 @@ class MCF_JsonManager: JsonApiStruct
 		keys = new array<string>();
 		userFriendlyKeys = new map<string, string>();
 		values = new array<string>();
-		types = new array<string>();
 		
 			
 		RegV("keys");
-		RegV("userFriendlyKeys");
 		RegV("values");
-		RegV("types");
 
 		if(LoadFromFile(settingsFileName))
 			Print("File loaded!");
@@ -36,14 +35,13 @@ class MCF_JsonManager: JsonApiStruct
 	}
 	
 	
-	void RegisterMap(notnull map<string, string> testMap, string type)
+	void RegisterMap(notnull map<string, string> testMap)
 	{
 		
 		foreach (string key, string value : testMap)
 		{
 			keys.Insert(key);
 			values.Insert(value);
-			types.Insert(type);
 			
 		}
 		
@@ -51,11 +49,10 @@ class MCF_JsonManager: JsonApiStruct
 
 	}
 	
-	void SetUserFriendlyVariableNames(map<string, string> userFriendlyStrings)
+	void AddReferenceToUserFriendlyVariableNames(map<string, string> userFriendlyStrings)
 	{
 		userFriendlyKeys = userFriendlyStrings;
 		
-		//PackToFile(settingsFileName);
 	}
 	
 	
@@ -97,6 +94,46 @@ class MCF_JsonManager: JsonApiStruct
 	{
 		return settingsFileName;
 	}
+	
+	
+	
+	
+	
+	
+	/////////////////////////////////////////////////
+	// PUBLIC METHODS
+	////////////////////////////////////////////////
+	
+	
+	void SetupUserFriendlyVariableNames(map<string, string> originalMapVariables, array<string> ufKeys)
+	{
+		
+		if (!(originalMapVariables.Count() == ufKeys.Count()))
+			return;
+		
+		if (!userFriendlyKeys)
+			userFriendlyKeys = new map<string, string>;
+		
+
+		map<string, string> tempMap = new map<string, string>;
+		for(int i = 0; i < ufKeys.Count(); i++)
+			userFriendlyKeys.Insert(originalMapVariables.GetKey(i), ufKeys[i]);
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

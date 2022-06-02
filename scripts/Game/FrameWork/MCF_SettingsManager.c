@@ -30,11 +30,31 @@ class MCF_SettingsManager
 		return instance;
 	}
 	
+	
+	
+	map<string, string> Setup(string mod_id, string fileNameJson, map<string, string> defaultValues, array<string> userFriendlyVarNames)
+	{
+	
+		MCF_JsonManager mcfJson = new MCF_JsonManager(fileNameJson);
+
+		map<string, string> settings = new map<string, string>;
+		if (!mcfJson.LoadFromFile(fileNameJson))
+			mcfJson.RegisterMap(defaultValues);
+		
+		
+		settings = mcfJson.GetMapFromJson();
+		mcfJson.SetupUserFriendlyVariableNames(defaultValues, userFriendlyVarNames);
+		AddJsonManager(mod_id, mcfJson);
+		
+		
+		return settings;
+		
+	}
 
 	
 	void AddJsonManager(string id, MCF_JsonManager mod)
 	{
-		Print("Adding stuff to MCF");
+		Print("Adding " + id + "to MCF");
 		settingsList.Insert(id, mod);
 		
 	}
