@@ -54,8 +54,15 @@ class MCF_ListModMenu : SCR_SettingsSubMenuBase
 
 		if (!SCR_AddonManager.GetInstance())
 		{
+			
+			
+			ResourceName addonManagerResourceName = "{0EBD16106CC9FFDC}Prefabs/addonManagerPrefab.et";
+			Resource addonManagerResource = Resource.Load(addonManagerResourceName);
+			
+			GetGame().SpawnEntityPrefab(addonManagerResource);
+			
 			Print("AddonManager is not initialized");
-			return;
+			//return;
 		}
 
 		
