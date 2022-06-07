@@ -104,6 +104,7 @@ class MCF_JsonManager: JsonApiStruct
 	// PUBLIC METHODS
 	////////////////////////////////////////////////
 	
+	#define DEBUG_MCF
 	
 	void SetupUserFriendlyVariableNames(map<string, string> originalMapVariables, array<string> ufKeys)
 	{
@@ -120,7 +121,15 @@ class MCF_JsonManager: JsonApiStruct
 			userFriendlyKeys.Insert(originalMapVariables.GetKey(i), ufKeys[i]);
 		
 		
+		#ifdef DEBUG_MCF
 		
+		foreach(string originalVarName, string friendlyVarName : userFriendlyKeys)
+		{
+			Print(originalVarName);
+			Print(friendlyVarName);
+			Print("_________________________");
+		}
+		#endif
 		
 		
 	}

@@ -67,6 +67,7 @@ class MCF_SettingsManager
 		return managerTemp;
 	}
 	
+
 	
 	map<string,string> GetModSettings(string modId)
 	{
