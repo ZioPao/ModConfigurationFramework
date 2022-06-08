@@ -35,6 +35,24 @@ class MCF_JsonManager: JsonApiStruct
 	}
 	
 	
+	
+	
+	
+	void RegisterMap(notnull map<string, ref VariableInfo> variablesMap)
+	{
+		foreach(string key, VariableInfo varInfo : variablesMap)
+		{
+			keys.Insert(key);
+			values.Insert(varInfo.variableValue);
+		}
+	
+		PackToFile(settingsFileName)
+
+	}
+	
+	
+	
+	/*
 	void RegisterMap(notnull map<string, string> testMap)
 	{
 		
@@ -48,6 +66,7 @@ class MCF_JsonManager: JsonApiStruct
 		PackToFile(settingsFileName)
 
 	}
+	*/
 	
 	void AddReferenceToUserFriendlyVariableNames(map<string, string> userFriendlyStrings)
 	{
@@ -106,6 +125,25 @@ class MCF_JsonManager: JsonApiStruct
 	
 	#define DEBUG_MCF
 	
+	
+	
+	
+	
+	void SetupUserFriendlyVariableNames(map<string, ref VariableInfo> variableMap)
+	{
+		if (!userFriendlyKeys)
+			userFriendlyKeys = new map<string, string>;
+		
+		map<string, string> tempMap = new map<string, string>;
+		foreach(string variableName, VariableInfo varInfo : variableMap)
+			userFriendlyKeys.Insert(variableName, varInfo.userFriendlyName);
+
+	
+	}
+	
+	
+	
+	/*
 	void SetupUserFriendlyVariableNames(map<string, string> originalMapVariables, array<string> ufKeys)
 	{
 		
@@ -133,7 +171,7 @@ class MCF_JsonManager: JsonApiStruct
 		
 		
 	}
-	
+	*/
 	
 	
 	
