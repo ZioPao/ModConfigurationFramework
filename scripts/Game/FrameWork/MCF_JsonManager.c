@@ -7,7 +7,9 @@ class MCF_JsonManager: JsonApiStruct
 	
 	protected string settingsFileName;
 	protected ref map<string, string> userFriendlyKeys;
-
+	
+	
+	protected ref map<string, string> currentSettings;		//no idea if it'll work
 	
 	
 	ref array<string> keys;
@@ -84,8 +86,10 @@ class MCF_JsonManager: JsonApiStruct
 	
 	map<string, string> GetMapFromJson()
 	{
-		map<string, string> currentSettings = new map<string, string>();
-
+		LoadFromFile(settingsFileName);
+		
+		currentSettings = new map<string, string>();		//reinit 
+		
 		
 		// todo add some kind of callback to reload map dynamically? 
 		for (int i = 0; i < keys.Count(); i++)
@@ -176,7 +180,12 @@ class MCF_JsonManager: JsonApiStruct
 	
 	
 	
+	//todo this should be called after we get a change. The user should override the json manager then to reset everything in here? 
+	//we really need to think this thorugh 
+	void ReloadSettings()
+	{
 	
+	}
 	
 	
 	

@@ -4,10 +4,6 @@ class MCF_SettingsManager
 	
 	
 	
-	static ref map<string, VariableInfo> settingsListTest;
-	
-	
-	
 	static ref map<string, ref MCF_JsonManager> settingsList;
 	protected static ref MCF_SettingsManager instance;
 	protected static bool toBeInit = true;
@@ -48,10 +44,20 @@ class MCF_SettingsManager
 		mcfJson.SetupUserFriendlyVariableNames(variablesToSet);		//slow and inefficient but it works for now
 		AddJsonManager(mod_id, mcfJson);
 		
+		
+			
+		
+		
+		
 		return mcfJson.GetMapFromJson();
 
 	}
 	
+	
+	event void ReloadSettings()
+	{
+		Print("will reload stuff");
+	}
 	
 	
 	
