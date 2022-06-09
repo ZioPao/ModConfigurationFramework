@@ -7,6 +7,7 @@ class MCF_JsonManager: JsonApiStruct
 	
 	protected string settingsFileName;
 	protected ref map<string, string> userFriendlyKeys;
+	protected ref array<string> orderArray;
 	
 	
 	protected ref map<string, string> currentSettings;		//no idea if it'll work
@@ -38,6 +39,21 @@ class MCF_JsonManager: JsonApiStruct
 	
 	
 	
+	void RegisterMap(notnull OrderedVariablesMap variablesMap)
+	{
+	
+		foreach(string key, VariableInfo varInfo : variablesMap.GetMap())
+		{
+			keys.Insert(key);
+			values.Insert(varInfo.variableValue);
+		}
+	
+		//Saves order 
+		SetOrder(variablesMap);
+		PackToFile(settingsFileName);
+	}
+	
+
 	
 	
 	void RegisterMap(notnull map<string, ref VariableInfo> variablesMap)
@@ -48,6 +64,7 @@ class MCF_JsonManager: JsonApiStruct
 			values.Insert(varInfo.variableValue);
 		}
 	
+
 		PackToFile(settingsFileName)
 
 	}
@@ -70,11 +87,7 @@ class MCF_JsonManager: JsonApiStruct
 	}
 	*/
 	
-	void AddReferenceToUserFriendlyVariableNames(map<string, string> userFriendlyStrings)
-	{
-		userFriendlyKeys = userFriendlyStrings;
-		
-	}
+
 	
 	
 	map<string, string> GetUserFriendlyVariableNames()
@@ -83,7 +96,6 @@ class MCF_JsonManager: JsonApiStruct
 	}
 	
 
-	
 	map<string, string> GetMapFromJson()
 	{
 		LoadFromFile(settingsFileName);
@@ -132,63 +144,45 @@ class MCF_JsonManager: JsonApiStruct
 	
 	
 	
-	
-	void SetupUserFriendlyVariableNames(map<string, ref VariableInfo> variableMap)
+	void SetUserHelpers(OrderedVariablesMap variablesMap)
 	{
 		if (!userFriendlyKeys)
 			userFriendlyKeys = new map<string, string>;
 		
-		map<string, string> tempMap = new map<string, string>;
-		foreach(string variableName, VariableInfo varInfo : variableMap)
+		map<string, ref VariableInfo> tempMap = variablesMap.GetMap();
+		foreach(string variableName, VariableInfo varInfo : tempMap)
+			userFriendlyKeys.Insert(variableName, varInfo.userFriendlyName);
+		
+		SetOrder(variablesMap);
+	}
+		
+	
+	void SetOrder(notnull OrderedVariablesMap variablesMap)
+	{
+	
+		
+		this.orderArray = variablesMap.GetOrderArray();
+	}
+	
+	
+	protected void SetupUserFriendlyVariableNames(OrderedVariablesMap variableMap)
+	{
+		if (!userFriendlyKeys)
+			userFriendlyKeys = new map<string, string>;
+		
+		map<string, ref VariableInfo> tempMap = variableMap.GetMap();
+		foreach(string variableName, VariableInfo varInfo : tempMap)
 			userFriendlyKeys.Insert(variableName, varInfo.userFriendlyName);
 
 	
 	}
 	
-	
-	
-	/*
-	void SetupUserFriendlyVariableNames(map<string, string> originalMapVariables, array<string> ufKeys)
+	array<string> GetOrderArray()
 	{
-		
-		if (!(originalMapVariables.Count() == ufKeys.Count()))
-			return;
-		
-		if (!userFriendlyKeys)
-			userFriendlyKeys = new map<string, string>;
-		
+		return orderArray;
+	}
+	
 
-		map<string, string> tempMap = new map<string, string>;
-		for(int i = 0; i < ufKeys.Count(); i++)
-			userFriendlyKeys.Insert(originalMapVariables.GetKey(i), ufKeys[i]);
-		
-		
-		#ifdef DEBUG_MCF
-		
-		foreach(string originalVarName, string friendlyVarName : userFriendlyKeys)
-		{
-			Print(originalVarName);
-			Print(friendlyVarName);
-			Print("_________________________");
-		}
-		#endif
-		
-		
-	}
-	*/
-	
-	
-	
-	
-	//todo this should be called after we get a change. The user should override the json manager then to reset everything in here? 
-	//we really need to think this thorugh 
-	void ReloadSettings()
-	{
-	
-	}
-	
-	
-	
 	
 	
 	

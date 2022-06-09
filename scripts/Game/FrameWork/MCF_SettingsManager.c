@@ -34,14 +34,15 @@ class MCF_SettingsManager
 	
 	
 	/* Will return the current settings list */
-	map<string, string> Setup(string mod_id, string fileNameJson, map<string, ref VariableInfo> variablesToSet)
+	map<string, string> Setup(string mod_id, string fileNameJson, OrderedVariablesMap variablesToSet)
 	{
 		MCF_JsonManager mcfJson = new MCF_JsonManager(fileNameJson);
 		if (!mcfJson.LoadFromFile(fileNameJson))
 			mcfJson.RegisterMap(variablesToSet);
 		
+
 		
-		mcfJson.SetupUserFriendlyVariableNames(variablesToSet);		//slow and inefficient but it works for now
+		mcfJson.SetUserHelpers(variablesToSet);	
 		AddJsonManager(mod_id, mcfJson);
 		
 		

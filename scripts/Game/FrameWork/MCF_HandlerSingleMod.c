@@ -58,24 +58,22 @@ class MCF_HandlerSingleMod : ScriptedWidgetComponent
 		
 		
 		map<string,string> userFriendlyNames = jsonManager.GetUserFriendlyVariableNames();
+		array<string> orderArray = jsonManager.GetOrderArray();
 		widgetArray = new array<ref MCF_EditBoxComponent>;
-		foreach(string varName, string varValue : modVariables)
+
+		
+		
+		foreach(string varName : orderArray)
 		{
 			Widget tempWidget  = GetGame().GetWorkspace().CreateWidgets(MOD_SINGLE_SETTING_LAYOUT_PATH, settingsLayout);
 			MCF_EditBoxComponent editBoxComponent = MCF_EditBoxComponent.Cast(tempWidget.FindHandler(MCF_EditBoxComponent));
 			widgetArray.Insert(editBoxComponent);
-
-			//Print(varName);
-			//Print(varValue);
-			//Print("__________");
 			
 			
-			editBoxComponent.SetSetting(userFriendlyNames.Get(varName), varValue);
-			
-			//editBoxComponent.SetSetting(varName, varValue);
+			editBoxComponent.SetSetting(userFriendlyNames.Get(varName), modVariables.Get(varName));
 			editBoxComponent.SetCurrentJsonManager(jsonManager);
 
-			
+		
 		}
 		
 
