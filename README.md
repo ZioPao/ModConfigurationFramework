@@ -1,1 +1,1 @@
-# ModConfigurationFramework
+# Mod Configuration Framework
