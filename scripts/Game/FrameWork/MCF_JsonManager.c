@@ -6,6 +6,7 @@ class MCF_JsonManager: JsonApiStruct
 	
 	
 	protected string settingsFileName;
+	protected ref map<string, string> defaultVariables;
 	protected ref map<string, string> userFriendlyKeys;
 	protected ref array<string> orderArray;
 	
@@ -23,6 +24,7 @@ class MCF_JsonManager: JsonApiStruct
 		
 		keys = new array<string>();
 		userFriendlyKeys = new map<string, string>();
+		defaultVariables = new map<string, string>();
 		values = new array<string>();
 		
 			
@@ -48,15 +50,14 @@ class MCF_JsonManager: JsonApiStruct
 			values.Insert(varInfo.variableValue);
 		}
 	
-		//Saves order 
-		SetOrder(variablesMap);
+		SetOrder(variablesMap);				//Saves the order of the variables
 		PackToFile(settingsFileName);
 	}
 	
 
 	
-	
-	void RegisterMap(notnull map<string, ref VariableInfo> variablesMap)
+	// OLD DON"T USE THIS!!!!
+	/*void RegisterMap(notnull map<string, ref VariableInfo> variablesMap)
 	{
 		foreach(string key, VariableInfo varInfo : variablesMap)
 		{
@@ -68,7 +69,7 @@ class MCF_JsonManager: JsonApiStruct
 		PackToFile(settingsFileName)
 
 	}
-	
+	*/
 	
 	
 	/*
@@ -151,8 +152,14 @@ class MCF_JsonManager: JsonApiStruct
 		
 		map<string, ref VariableInfo> tempMap = variablesMap.GetMap();
 		foreach(string variableName, VariableInfo varInfo : tempMap)
+		{
 			userFriendlyKeys.Insert(variableName, varInfo.userFriendlyName);
+			defaultVariables.Insert(variableName, varInfo.variableValue);
+
+		}
 		
+		
+
 		SetOrder(variablesMap);
 	}
 		
@@ -160,9 +167,9 @@ class MCF_JsonManager: JsonApiStruct
 	void SetOrder(notnull OrderedVariablesMap variablesMap)
 	{
 	
-		
 		this.orderArray = variablesMap.GetOrderArray();
 	}
+	
 	
 	
 	protected void SetupUserFriendlyVariableNames(OrderedVariablesMap variableMap)
@@ -176,6 +183,32 @@ class MCF_JsonManager: JsonApiStruct
 
 	
 	}
+	
+	
+	void ResetDefaultValues()
+	{
+		
+		keys = {};
+		values = {};
+		
+		
+		foreach(string variableName, string variableValue : defaultVariables)
+		{
+			
+			
+			keys.Insert(variableName);
+			values.Insert(variableValue);
+		}
+		
+		
+		
+		PackToFile(settingsFileName);
+
+	
+	}
+	
+	
+	
 	
 	array<string> GetOrderArray()
 	{
@@ -191,12 +224,12 @@ class MCF_JsonManager: JsonApiStruct
 	///////////////////////////
 	override void OnError( int errorCode )
 	{
-		Print("ERROR CODE " + errorCode.ToString());
+		//Print("ERROR CODE " + errorCode.ToString());
 		
 	}
 	
 	override void OnSuccess( int errorCode )
 	{
-		Print("SUCCESS CODE " + errorCode.ToString());
+		//Print("SUCCESS CODE " + errorCode.ToString());
 	}
 }

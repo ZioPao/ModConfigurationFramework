@@ -22,23 +22,106 @@ HorizontalLayoutWidgetClass {
       Padding 0 0 0 0
      }
      {
-      VerticalLayoutWidgetClass "{598277B3BCF7D78C}" {
-       Name "ModLabelLayout"
-       Slot LayoutSlot "{598277B3BCF7D774}" {
-        Padding 40 30 40 20
+      HorizontalLayoutWidgetClass "{5996E08AD3FB1AE2}" {
+       Name "TopLayout"
+       Slot LayoutSlot "{5996E08AD3FB1AC2}" {
+        HorizontalAlign 0
+        VerticalAlign 2
        }
        {
-        TextWidgetClass "{598277B3BFAA7E59}" {
-         Name "ModLabel"
-         Slot LayoutSlot "{598277B3BFAA7E38}" {
+        VerticalLayoutWidgetClass "{598277B3BCF7D78C}" {
+         Name "ModLabelLayout"
+         Slot LayoutSlot "{598277B3BCF7D774}" {
+          HorizontalAlign 0
+          VerticalAlign 0
+          Padding 0 30 0 20
+         }
+         {
+          TextWidgetClass "{598277B3BFAA7E59}" {
+           Name "ModLabel"
+           Slot LayoutSlot "{598277B3BFAA7E38}" {
+            HorizontalAlign 0
+            Padding 0 0 0 0
+           }
+          }
          }
         }
        }
       }
+      HorizontalLayoutWidgetClass "{5996ED01BF32A39A}" {
+       Name "ResetToDefaultLayout"
+       Slot LayoutSlot "{5996ED01BF32A34C}" {
+        HorizontalAlign 0
+        VerticalAlign 0
+        Padding 0 8 0 0
+       }
+       {
+        ButtonWidgetClass "{5996ED01B9A32C5B}" : "{D4A59F7BC96C80EF}UI/layouts/ResetDefaultButton.layout" {
+         Name "ReturnToDefaultButton"
+         Slot LayoutSlot "{597CEBDD9617AD08}" {
+          Padding 0 0 0 0
+         }
+         {
+          SizeLayoutWidgetClass "{5996ED064F528201}" {
+           Prefab "{5996ED064F528201}"
+           {
+            OverlayWidgetClass "{5996ED064F52820F}" {
+             Prefab "{5996ED064F52820F}"
+             {
+              HorizontalLayoutWidgetClass "{5996ED064F52820C}" {
+               Prefab "{5996ED064F52820C}"
+               Slot OverlayWidgetSlot "{597EFA94DA48DD89}" {
+                Padding 15 0 25 0
+               }
+               {
+                HorizontalLayoutWidgetClass "{5996ED064F52820B}" {
+                 Prefab "{5996ED064F52820B}"
+                 Slot LayoutSlot "{597EFA94D18EDFF2}" {
+                  SizeMode Auto
+                 }
+                 {
+                  SizeLayoutWidgetClass "{5996ED064F52820A}" {
+                   Prefab "{5996ED064F52820A}"
+                   AllowWidthOverride 0
+                   {
+                    TextWidgetClass "{5996ED064F528209}" {
+                     Prefab "{5996ED064F528209}"
+                     Slot AlignableSlot "{597EFA94C0918514}" {
+                      HorizontalAlign 0
+                      VerticalAlign 0
+                      Padding 5 0 0 0
+                     }
+                     Text "Reset to Default"
+                    }
+                   }
+                  }
+                 }
+                }
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+      ImageWidgetClass "{5996ED03A071A67D}" {
+       Prefab "{58C359558B41741E}"
+       Name "Separator"
+       Slot LayoutSlot "{5996ED1E7A054A0C}" {
+        Padding 0 25 0 6
+       }
+       Color 1 1 1 0.498
+       Pivot 1 0.5
+       Size 32 4
+       Filter 0
+      }
       VerticalLayoutWidgetClass "{598294DEA1FD404F}" {
        Name "SettingsLayout"
        Slot LayoutSlot "{598277B3BCF7D774}" {
-        Padding 40 30 40 20
+        Padding 0 30 0 20
        }
       }
      }

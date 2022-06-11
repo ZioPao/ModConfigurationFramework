@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{E9009C033B3FDBA7}UI/layouts/ResetDefaultButton2.layout"
+ Configurations {
+  LayoutResourceClass PC {
+  }
+  LayoutResourceClass XBOX_ONE : PC {
+  }
+  LayoutResourceClass XBOX_SERIES : PC {
+  }
+  LayoutResourceClass PS4 : PC {
+  }
+  LayoutResourceClass HEADLESS : PC {
+  }
+ }
+}

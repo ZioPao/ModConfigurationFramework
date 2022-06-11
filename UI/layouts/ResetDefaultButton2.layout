@@ -1,0 +1,49 @@
+ButtonWidgetClass "{5996ED01B9A32C5B}" : "{D4A59F7BC96C80EF}UI/layouts/ResetDefaultButton.layout" {
+ Name "ReturnToDefaultButton"
+ Slot LayoutSlot "{597CEBDD9617AD08}" {
+  Padding 0 0 0 0
+ }
+ {
+  SizeLayoutWidgetClass "{5996ED064F528201}" {
+   Prefab "{5996ED064F528201}"
+   {
+    OverlayWidgetClass "{5996ED064F52820F}" {
+     Prefab "{5996ED064F52820F}"
+     {
+      HorizontalLayoutWidgetClass "{5996ED064F52820C}" {
+       Prefab "{5996ED064F52820C}"
+       Slot OverlayWidgetSlot "{597EFA94DA48DD89}" {
+        Padding 15 0 25 0
+       }
+       {
+        HorizontalLayoutWidgetClass "{5996ED064F52820B}" {
+         Prefab "{5996ED064F52820B}"
+         Slot LayoutSlot "{597EFA94D18EDFF2}" {
+          SizeMode Auto
+         }
+         {
+          SizeLayoutWidgetClass "{5996ED064F52820A}" {
+           Prefab "{5996ED064F52820A}"
+           AllowWidthOverride 0
+           {
+            TextWidgetClass "{5996ED064F528209}" {
+             Prefab "{5996ED064F528209}"
+             Slot AlignableSlot "{597EFA94C0918514}" {
+              HorizontalAlign 0
+              VerticalAlign 0
+              Padding 5 0 0 0
+             }
+             Text "Reset to Default"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

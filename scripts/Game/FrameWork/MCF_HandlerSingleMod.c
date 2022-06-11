@@ -7,21 +7,27 @@ class MCF_HandlerSingleMod : ScriptedWidgetComponent
 	
 	ref map<string, string> modVariables;
 	ref MCF_SettingsManager settingsManager
+	ref Widget parent;
 	string modId;
 	
 	ref array<ref MCF_EditBoxComponent> widgetArray;
+	SCR_ButtonBaseComponent resetToDefaultButton;
 	void MCF_HandlerSingleMod(string id)
 	{
 		this.modId = id;
+
 	}
 
 
 	override bool OnClick(Widget w, int x, int y, int button)
-	{
-		// Should open another dialog menu I guess, or something on the right or whatever. Still, we need to load the specific settings for this mod. 
+	{		
+		
+		if (!parent)
+			parent = w.GetParent().GetParent().GetParent();		//ew
+
 		
 		
-		VerticalLayoutWidget descriptionLayout = VerticalLayoutWidget.Cast(w.GetParent().GetParent().GetParent().FindAnyWidget("Description"));
+		VerticalLayoutWidget descriptionLayout = VerticalLayoutWidget.Cast(parent.FindAnyWidget("Description"));
 		//Print(TextWidget.Cast(w.FindAnyWidget("TextMod")).GetText());
 		
 		Widget oldWidget = descriptionLayout.GetChildren();
@@ -37,6 +43,14 @@ class MCF_HandlerSingleMod : ScriptedWidgetComponent
 		TextWidget oldTextWidget = TextWidget.Cast(w.FindAnyWidget("TextMod"));
 		string oldText = oldTextWidget.GetText();
 		modLabel.SetText(oldText);
+		
+		
+		//setup reset to default button 
+		ButtonWidget resetToDefaultWidget = ButtonWidget.Cast(singleModMenu.FindAnyWidget("ReturnToDefaultButton"));
+		resetToDefaultButton = SCR_ButtonBaseComponent.Cast(resetToDefaultWidget.FindHandler(SCR_ButtonBaseComponent));
+		resetToDefaultButton.m_OnClicked.Insert(ResetDefaultValues);
+		
+		
 
 		
 		VerticalLayoutWidget settingsLayout = VerticalLayoutWidget.Cast(singleModMenu.FindAnyWidget("SettingsLayout"));
@@ -86,9 +100,22 @@ class MCF_HandlerSingleMod : ScriptedWidgetComponent
 	void PopulateSettings()
 	{
 		// Search for correct json 
+
 		
 		
+	}
+	
+	void ResetDefaultValues()
+	{
+		MCF_JsonManager jsonManager = settingsManager.GetJsonManager(modId);
 		
+		jsonManager.ResetDefaultValues();
+		OnClick(parent, 0, 0, 0);			//Just to refresh stuff. not ideal but it works
+
+		
+		Print("Will reset everything to default");
+		resetToDefaultButton.m_OnClicked.Remove(ResetDefaultValues);
+	
 	}
 	
 	

@@ -1,0 +1,118 @@
+OverlayWidgetClass "{5996ED02770A96B1}" {
+ Name "MenuBackground"
+ Slot FrameWidgetSlot "{552C9A0A8526D2AD}" {
+  Anchor 0 0 1 1
+  PositionX 0
+  OffsetLeft 0
+  PositionY 0
+  OffsetTop 0
+  SizeX -1820
+  OffsetRight 0
+  SizeY -1050
+  OffsetBottom 0
+ }
+ Color 0 0 0 1
+ {
+  ScaleWidgetClass "{5996ED02770A96BF}" {
+   Name "Scale"
+   Slot OverlayWidgetSlot "{552C9A0A85187991}" {
+    HorizontalAlign 3
+    VerticalAlign 3
+   }
+   "Inherit Color" 1
+   "Scale Mode" "Scale to fill"
+   {
+    ImageWidgetClass "{5996ED02770A96BC}" {
+     Name "BackgroundImage"
+     Slot AlignableSlot "{552C8E22202CDAE6}" {
+     }
+     Texture "{B98FB2CD75200E57}UI/Textures/MainMenu/MenuBackgroundBlank_UI.edds"
+     Image ""
+     Size 3840 2160
+    }
+   }
+  }
+  VerticalLayoutWidgetClass "{5996ED02770A96BB}" {
+   Name "VerticalLayout0"
+   Slot OverlayWidgetSlot "{552CC287E0710A52}" {
+    HorizontalAlign 3
+    VerticalAlign 3
+   }
+   "Inherit Color" 1
+   {
+    ImageWidgetClass "{5996ED02770A96BA}" {
+     Name "Image0"
+     Slot LayoutSlot "{552CCA33CA467911}" {
+      SizeMode Fill
+     }
+     "Inherit Color" 1
+     Mask "{EEEA388EB9A457E9}UI/Textures/ProgressMasks/ProgressMaskVertical_256x1.edds"
+     "Transition width" 1
+     Progress 0.4
+    }
+    SizeLayoutWidgetClass "{5996ED02770B69FF}" {
+     Name "SizeLayout0"
+     Slot LayoutSlot "{552CCA33FB36FA32}" {
+     }
+     "Inherit Color" 1
+     AllowWidthOverride 1
+     WidthOverride 800
+     AllowHeightOverride 1
+     HeightOverride 400
+    }
+    ImageWidgetClass "{5996ED02770B69FC}" {
+     Name "Image1"
+     Slot LayoutSlot "{552CCA33CC9BFB86}" {
+      SizeMode Fill
+     }
+     "Inherit Color" 1
+     Mask "{EEEA388EB9A457E9}UI/Textures/ProgressMasks/ProgressMaskVertical_256x1.edds"
+     "Transition width" 1
+     Progress 0.6
+     "Mask Mode" "Include Below"
+    }
+   }
+  }
+  HorizontalLayoutWidgetClass "{5996ED02770B69FD}" {
+   Name "HorizontalLayout0"
+   Slot OverlayWidgetSlot "{552CC287E4D97748}" {
+    HorizontalAlign 3
+    VerticalAlign 3
+   }
+   "Inherit Color" 1
+   {
+    ImageWidgetClass "{5996ED02770B69C2}" {
+     Name "Image0"
+     Slot LayoutSlot "{552CCA33CA467911}" {
+      SizeMode Fill
+     }
+     "Inherit Color" 1
+     Mask "{676E2F5620CD2D8F}UI/Textures/ProgressMasks/ProgressMaskHorizontal_256x1.edds"
+     "Transition width" 1
+     Progress 0.4
+    }
+    SizeLayoutWidgetClass "{5996ED02770B69C3}" {
+     Name "SizeLayout0"
+     Slot LayoutSlot "{552CCA33FB36FA32}" {
+     }
+     "Inherit Color" 1
+     AllowWidthOverride 1
+     WidthOverride 800
+     AllowHeightOverride 1
+     HeightOverride 400
+    }
+    ImageWidgetClass "{5996ED02770B69C0}" {
+     Name "Image1"
+     Slot LayoutSlot "{552CCA33CC9BFB86}" {
+      SizeMode Fill
+     }
+     "Inherit Color" 1
+     Mask "{676E2F5620CD2D8F}UI/Textures/ProgressMasks/ProgressMaskHorizontal_256x1.edds"
+     "Transition width" 1
+     Progress 0.6
+     "Mask Mode" "Include Below"
+    }
+   }
+  }
+ }
+}

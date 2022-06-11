@@ -26,12 +26,7 @@ class MCF_EditBoxComponent : SCR_EditBoxComponent
 	{
 		if (m_bIsTyping)
 			m_OnConfirm.Invoke(this, GetValue());
-		
-		
-		
-		Print("SAVED VALUE RIGHT NOW!!!");
 
-		
 		string currentValue = GetValue();
 		string currentText = GetLabel().GetText();
 		
@@ -73,6 +68,8 @@ class MCF_EditBoxComponent : SCR_EditBoxComponent
 
 		string tempFileName = jsonManager.GetFileName();
 		jsonManager.PackToFile(tempFileName);
+		
+		Print("MCF: Saved " + currentKey + "=" + currentValue + " to " + tempFileName);
 		
 		
 	}

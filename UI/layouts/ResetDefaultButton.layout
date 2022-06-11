@@ -1,0 +1,95 @@
+ButtonWidgetClass {
+ Name "ModButton"
+ Slot LayoutSlot "{597CEBDD9617AD08}" {
+  VerticalAlign 1
+  Padding 4 4 4 4
+ }
+ Color 1 1 1 0
+ components {
+  SCR_ButtonBaseComponent "{5996ED012356D030}" {
+  }
+ }
+ {
+  SizeLayoutWidgetClass "{5996ED064F528201}" {
+   Name "SizeLayout"
+   Slot ButtonWidgetSlot "{597EFA936F5C81BB}" {
+    HorizontalAlign 3
+   }
+   Clipping False
+   AllowHeightOverride 1
+   HeightOverride 36
+   {
+    OverlayWidgetClass "{5996ED064F52820F}" {
+     Name "Overlay"
+     Slot AlignableSlot "{597EFA936A2776C6}" {
+      HorizontalAlign 3
+      VerticalAlign 3
+      Padding 2 2 2 2
+     }
+     {
+      ImageWidgetClass "{5996ED064F52820E}" {
+       Name "Background"
+       Slot OverlayWidgetSlot "{597EFA953B2F7E1D}" {
+        HorizontalAlign 3
+        VerticalAlign 3
+       }
+       Color 0 0 0 0.424
+       Size 36 36
+      }
+      PanelWidgetClass "{5996ED064F52820D}" {
+       Name "Border"
+       Slot OverlayWidgetSlot "{597EFA94899176F5}" {
+        HorizontalAlign 3
+        VerticalAlign 3
+        Padding -2 -2 -2 -2
+       }
+       Clipping False
+       Color 0.761 0.386 0.078 1
+       style outline_2px
+      }
+      HorizontalLayoutWidgetClass "{5996ED064F52820C}" {
+       Name "HorizontalLayout0"
+       Slot OverlayWidgetSlot "{597EFA94DA48DD89}" {
+        HorizontalAlign 0
+        Padding 25 0 0 0
+       }
+       {
+        HorizontalLayoutWidgetClass "{5996ED064F52820B}" {
+         Name "Content"
+         Slot LayoutSlot "{597EFA94D18EDFF2}" {
+          HorizontalAlign 0
+          VerticalAlign 1
+          SizeMode Fill
+         }
+         {
+          SizeLayoutWidgetClass "{5996ED064F52820A}" {
+           Name "TextSize"
+           Slot LayoutSlot "{597EFA94C665065B}" {
+            HorizontalAlign 0
+            VerticalAlign 1
+           }
+           AllowWidthOverride 1
+           WidthOverride 100
+           {
+            TextWidgetClass "{5996ED064F528209}" {
+             Name "TextMod"
+             Slot AlignableSlot "{597EFA94C0918514}" {
+              HorizontalAlign 2
+              Padding 0 0 8 0
+             }
+             "Font Size" 18
+             "Min Font Size" 18
+             "Line Spacing" 10
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

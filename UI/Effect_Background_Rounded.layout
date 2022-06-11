@@ -1,0 +1,22 @@
+OverlayWidgetClass "{5996ED1C905E6205}" {
+ Name "Effect_Background_Rounded"
+ {
+  BlurWidgetClass "{5996ED1C905E6208}" {
+   Name "Blur0"
+   Slot OverlayWidgetSlot "{58D10AD5FFA2FCF1}" {
+    HorizontalAlign 3
+    VerticalAlign 3
+   }
+   Intensity 0.333
+  }
+  ImageWidgetClass "{5996ED1C905E620F}" {
+   Name "Background_Main"
+   Slot OverlayWidgetSlot "{58F87EB4FCF7A173}" {
+    HorizontalAlign 3
+    VerticalAlign 3
+   }
+   Opacity 0.33
+   Color 0 0 0 1
+  }
+ }
+}
