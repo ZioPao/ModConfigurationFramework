@@ -32,6 +32,10 @@ class MCF_SettingsManager
 		return instance;
 	}
 	
+	static bool IsInitialized()
+	{
+		return !toBeInit;		
+	}
 	
 	/* Will return the current settings list */
 	map<string, string> Setup(string mod_id, string fileNameJson, OrderedVariablesMap variablesToSet)
@@ -89,7 +93,10 @@ class MCF_SettingsManager
 	
 	void AddJsonManager(string id, MCF_JsonManager mod)
 	{
-		Print("Adding " + id + "to MCF");
+		
+		#ifdef DEBUG_MCF
+		Print("Adding " + id + " to MCF");
+		#endif
 		settingsList.Insert(id, mod);
 		
 	}

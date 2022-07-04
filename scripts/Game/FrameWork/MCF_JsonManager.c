@@ -32,9 +32,17 @@ class MCF_JsonManager: JsonApiStruct
 		RegV("values");
 
 		if(LoadFromFile(settingsFileName))
+		{
+			#ifdef DEBUG_MCF
 			Print("File loaded!");
+			#endif
+		}
 		else
+		{
+			#ifdef DEBUG_MCF 
 			Print("Loading failed");
+			#endif
+		}
 
 				
 	}

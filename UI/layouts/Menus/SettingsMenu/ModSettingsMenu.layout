@@ -13,6 +13,7 @@ HorizontalLayoutWidgetClass {
     FillWeight 1.5
    }
    Color 0.761 0.392 0.078 1
+   "Scrollbar Always Visible" 1
    {
     VerticalLayoutWidgetClass "{597CDE8CA40EFA89}" {
      Name "Content"
