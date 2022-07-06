@@ -20,6 +20,8 @@ ButtonWidgetClass {
    Clipping False
    AllowHeightOverride 1
    HeightOverride 36
+   AllowMaxDesiredWidth 1
+   MaxDesiredWidth -1.7
    {
     OverlayWidgetClass "{597EFA936A2776EF}" {
      Name "Overlay"

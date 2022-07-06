@@ -18,6 +18,12 @@ ButtonWidgetClass {
    Slot ButtonWidgetSlot "{5538C205B27B0F74}" {
     HorizontalAlign 3
    }
+   AllowWidthOverride 1
+   WidthOverride 600
+   HeightOverride 52.7
+   MinDesiredWidth 100
+   MinDesiredHeight 0
+   MaxDesiredWidth 199
    {
     OverlayWidgetClass "{55367D8E531FD623}" {
      Prefab "{55367D8E531FD623}"

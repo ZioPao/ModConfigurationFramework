@@ -13,7 +13,6 @@ HorizontalLayoutWidgetClass {
     FillWeight 1.5
    }
    Color 0.761 0.392 0.078 1
-   "Scrollbar Always Visible" 1
    {
     VerticalLayoutWidgetClass "{597CDE8CA40EFA89}" {
      Name "Content"
@@ -29,17 +28,21 @@ HorizontalLayoutWidgetClass {
        }
        components {
         SCR_LabelComponent "{58B30C1A8E56F0FF}" {
-         m_sLabel "#AR-Settings_Title_General"
+         m_sLabel "Compatible Mods"
         }
        }
        {
+        TextWidgetClass "{58B30C1F77EC7B4E}" {
+         Prefab "{58B30C1F77EC7B4E}"
+         Text "General"
+        }
        }
       }
      }
     }
    }
   }
-  VerticalLayoutWidgetClass "{597CDE8CA40EFA9B}" {
+  HorizontalLayoutWidgetClass "{597CDE8CA40EFA9B}" {
    Name "Description"
    Slot LayoutSlot "{54890CCA1EA23AC0}" {
     SizeMode Fill

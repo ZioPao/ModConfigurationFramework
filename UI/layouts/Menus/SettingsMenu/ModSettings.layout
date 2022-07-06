@@ -5,14 +5,15 @@ HorizontalLayoutWidgetClass {
   }
  }
  {
-  SizeLayoutWidgetClass "{5982714A18D97ACE}" {
+  ScrollLayoutWidgetClass "{5982714A18D97ACE}" {
    Name "ScrollLayout0"
    Slot LayoutSlot "{54890CCF4EB5C47F}" {
-    Padding 12 0 0 -352.6
     SizeMode Fill
-    FillWeight 1.5
+    FillWeight 95.1
    }
+   "Ignore Cursor" 0
    Color 0.761 0.392 0.078 1
+   "Scrollbar Always Visible" 1
    {
     VerticalLayoutWidgetClass "{5982714A18D97ACD}" {
      Name "Content"

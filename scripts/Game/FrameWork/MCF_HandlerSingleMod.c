@@ -27,7 +27,7 @@ class MCF_HandlerSingleMod : ScriptedWidgetComponent
 
 		
 		
-		VerticalLayoutWidget descriptionLayout = VerticalLayoutWidget.Cast(parent.FindAnyWidget("Description"));
+		HorizontalLayoutWidget descriptionLayout = HorizontalLayoutWidget.Cast(parent.FindAnyWidget("Description"));
 		//Print(TextWidget.Cast(w.FindAnyWidget("TextMod")).GetText());
 		
 		Widget oldWidget = descriptionLayout.GetChildren();
