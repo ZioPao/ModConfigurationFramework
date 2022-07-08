@@ -8,6 +8,7 @@ class MCF_JsonManager: JsonApiStruct
 	protected string settingsFileName;
 	protected ref map<string, string> defaultVariables;
 	protected ref map<string, string> userFriendlyKeys;
+	protected ref map<string, EFilterType> filtersMap;
 	protected ref array<string> orderArray;
 	
 	
@@ -25,6 +26,8 @@ class MCF_JsonManager: JsonApiStruct
 		keys = new array<string>();
 		userFriendlyKeys = new map<string, string>();
 		defaultVariables = new map<string, string>();
+		filtersMap = new map<string, EFilterType>();
+		
 		values = new array<string>();
 		
 			
@@ -163,6 +166,7 @@ class MCF_JsonManager: JsonApiStruct
 		{
 			userFriendlyKeys.Insert(variableName, varInfo.userFriendlyName);
 			defaultVariables.Insert(variableName, varInfo.variableValue);
+			filtersMap.Insert(variableName, varInfo.type);
 
 		}
 		
@@ -178,6 +182,19 @@ class MCF_JsonManager: JsonApiStruct
 		this.orderArray = variablesMap.GetOrderArray();
 	}
 	
+	
+
+	
+	array<string> GetOrderArray()
+	{
+		return orderArray;
+	}
+	
+	
+	map<string, EFilterType> GetFiltersMap()
+	{
+		return filtersMap;
+	}
 	
 	
 	protected void SetupUserFriendlyVariableNames(OrderedVariablesMap variableMap)
@@ -215,16 +232,7 @@ class MCF_JsonManager: JsonApiStruct
 	
 	}
 	
-	
-	
-	
-	array<string> GetOrderArray()
-	{
-		return orderArray;
-	}
-	
 
-	
 	
 	
 	

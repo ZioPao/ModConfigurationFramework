@@ -12,18 +12,91 @@ class MCF_EditBoxComponent : SCR_EditBoxComponent
 	}
 	
 	
-	void SetSetting(string varName, string varValue)
+	void SetSetting(string varName, string varValue, EFilterType type)
 	{
 		
 		SetLabel(varName);		
 		SetValue(varValue);
+		SetFilter(type);
 	}
+	
+	
+	
+	
+	void SetFilter(EFilterType t)
+	{
+		//can we actually do this?
+		
+		EditBoxFilterComponent filter = EditBoxFilterComponent.Cast(m_wEditBox.FindHandler(EditBoxFilterComponent));
+		if (filter)
+		{
+			switch(t)
+			{
+				case EFilterType.TYPE_BOOL:
+				{
+					filter.SetCharacterLimitFilter(1);
+					filter.SetPunctuationFilter(false);
+					filter.SetNumberFilter(false);
+					filter.SetASCIIFilter(false);
+					filter.SetUTFMultiByteFilter(false);
+					//filter.SetWhitelistFilter("ABC123");
+					
+					
+					//TODO ADD BLACKLIST! ONLY 0 AND 1!
+					break;
+				
+				}
+				case EFilterType.TYPE_INT:
+				{
+					filter.SetCharacterLimitFilter(10);
+					filter.SetPunctuationFilter(false);
+					filter.SetNumberFilter(true);
+					filter.SetASCIIFilter(false);
+					filter.SetUTFMultiByteFilter(false);
+					break;
+				}
+				case EFilterType.TYPE_FLOAT:
+				{
+					filter.SetCharacterLimitFilter(10);
+					filter.SetPunctuationFilter(true);
+					filter.SetNumberFilter(true);
+					filter.SetASCIIFilter(false);
+					filter.SetUTFMultiByteFilter(false);
+					break;
+				}
+				case EFilterType.TYPE_STRING:
+				{
+					filter.SetCharacterLimitFilter(15);
+					filter.SetPunctuationFilter(true);
+					filter.SetNumberFilter(true);
+					filter.SetASCIIFilter(true);
+					filter.SetUTFMultiByteFilter(true);
+					break;
+				}
+				
+			
+			}
+		
+		}
+
+	
+	}
+	
+	
+	
 	
 	
 	
 	//------------------------------------------------------------------------------------------------
 	override protected void OnConfirm(Widget w)
 	{
+		
+		
+		
+		//VALIDATE INPUT!!!!!!!
+		
+		
+		
 		if (m_bIsTyping)
 			m_OnConfirm.Invoke(this, GetValue());
 

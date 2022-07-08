@@ -3,14 +3,16 @@ class VariableInfo
 	
 	string userFriendlyName;
 	string variableValue;
+	EFilterType type;
 	
 	//string category;
 	//int index;
 	
-	void VariableInfo(string ufn, string vv, /*string cat*/)
+	void VariableInfo(string ufn, string vv, EFilterType t = EFilterType.TYPE_STRING)
 	{
 		this.userFriendlyName = ufn;
 		this.variableValue = vv;
+		this.type = t;
 		
 		//this.category = cat;		//to sort stuff 
 		//this.index = id;

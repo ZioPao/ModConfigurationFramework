@@ -118,6 +118,8 @@ ButtonWidgetClass {
              Clipping True
              components {
               EditBoxFilterComponent "{59837435A5270392}" {
+               m_bASCIIchars 0
+               m_bUTFMultibyte 0
               }
               SCR_EventHandlerComponent "{59837435DD1F7142}" {
               }

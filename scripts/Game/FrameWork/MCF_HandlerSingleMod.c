@@ -73,6 +73,8 @@ class MCF_HandlerSingleMod : ScriptedWidgetComponent
 		
 		map<string,string> userFriendlyNames = jsonManager.GetUserFriendlyVariableNames();
 		array<string> orderArray = jsonManager.GetOrderArray();
+		map<string, EFilterType> filters = jsonManager.GetFiltersMap();
+		
 		widgetArray = new array<ref MCF_EditBoxComponent>;
 
 		
@@ -84,7 +86,7 @@ class MCF_HandlerSingleMod : ScriptedWidgetComponent
 			widgetArray.Insert(editBoxComponent);
 			
 			
-			editBoxComponent.SetSetting(userFriendlyNames.Get(varName), modVariables.Get(varName));
+			editBoxComponent.SetSetting(userFriendlyNames.Get(varName), modVariables.Get(varName), filters.Get(varName));
 			editBoxComponent.SetCurrentJsonManager(jsonManager);
 
 		
@@ -95,16 +97,7 @@ class MCF_HandlerSingleMod : ScriptedWidgetComponent
 		
 	}
 	
-	
-	
-	void PopulateSettings()
-	{
-		// Search for correct json 
 
-		
-		
-	}
-	
 	void ResetDefaultValues()
 	{
 		MCF_JsonManager jsonManager = settingsManager.GetJsonManager(modId);
@@ -118,19 +111,7 @@ class MCF_HandlerSingleMod : ScriptedWidgetComponent
 	
 	}
 	
-	
-	void ApplyChanges()
-	{
-		
-		//when we apply a setting, we need to reload the mod... or not? 
-		// no we don't need to reload anything if it's loaded directly from a json... but probably it'll be slower I guess?
-		// we'd probably need some kind of interface to load json ONCE at apply time and then forget about them at runtime 
-		
-		
-		// We'll make a callback to something connected to every compatible mod. That callback will start a re-read of changed values in the json
-		
-	}
-	
+
 	
 
 }
