@@ -4,6 +4,7 @@ class MCF_EditBoxComponent : SCR_EditBoxComponent
 
 	
 	MCF_JsonManager jsonManager;
+	EFilterType filterType;
 			
 	
 	void SetCurrentJsonManager(MCF_JsonManager manager)
@@ -25,7 +26,8 @@ class MCF_EditBoxComponent : SCR_EditBoxComponent
 	
 	void SetFilter(EFilterType t)
 	{
-		//can we actually do this?
+		
+		filterType = t;
 		
 		EditBoxFilterComponent filter = EditBoxFilterComponent.Cast(m_wEditBox.FindHandler(EditBoxFilterComponent));
 		if (filter)
@@ -86,7 +88,6 @@ class MCF_EditBoxComponent : SCR_EditBoxComponent
 	
 	
 	
-	
 	//------------------------------------------------------------------------------------------------
 	override protected void OnConfirm(Widget w)
 	{
@@ -102,6 +103,38 @@ class MCF_EditBoxComponent : SCR_EditBoxComponent
 
 		string currentValue = GetValue();
 		string currentText = GetLabel().GetText();
+		
+		
+			
+		if (filterType == EFilterType.TYPE_FLOAT)
+		{
+			string currentChar; 
+			int separatorCounter;
+			//Second validation 
+			for (int i = 0; i < currentValue.Length(); i++)
+			{
+				currentChar = currentValue[i];
+				
+				if (currentChar == "," || currentChar == ".")
+					separatorCounter++;
+			
+			}
+			
+			if (separatorCounter > 1)
+			{
+				OnInvalidInput();
+				return;
+
+			}
+			
+		
+		}
+
+		
+		
+		
+		
+		
 		
 		map<string, string> userFriendlyAliases = jsonManager.GetUserFriendlyVariableNames();
 				
