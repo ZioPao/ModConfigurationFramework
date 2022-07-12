@@ -18,6 +18,10 @@ class MCF_JsonManager: JsonApiStruct
 	ref array<string> keys;
 	ref array<string> values;
 
+	void ~MCF_JsonManager()
+	{
+		//Print("Destroy me");
+	}
 		
 	void MCF_JsonManager(string fileName)
 	{
@@ -39,6 +43,7 @@ class MCF_JsonManager: JsonApiStruct
 			#ifdef DEBUG_MCF
 			Print("File loaded!");
 			#endif
+
 		}
 		else
 		{
@@ -46,6 +51,7 @@ class MCF_JsonManager: JsonApiStruct
 			Print("Loading failed");
 			#endif
 		}
+		SetDone();
 
 				
 	}
@@ -63,45 +69,10 @@ class MCF_JsonManager: JsonApiStruct
 	
 		SetOrder(variablesMap);				//Saves the order of the variables
 		PackToFile(settingsFileName);
+		SetDone();
 	}
 	
 
-	
-	// OLD DON"T USE THIS!!!!
-	/*void RegisterMap(notnull map<string, ref VariableInfo> variablesMap)
-	{
-		foreach(string key, VariableInfo varInfo : variablesMap)
-		{
-			keys.Insert(key);
-			values.Insert(varInfo.variableValue);
-		}
-	
-
-		PackToFile(settingsFileName)
-
-	}
-	*/
-	
-	
-	/*
-	void RegisterMap(notnull map<string, string> testMap)
-	{
-		
-		foreach (string key, string value : testMap)
-		{
-			keys.Insert(key);
-			values.Insert(value);
-			
-		}
-		
-		PackToFile(settingsFileName)
-
-	}
-	*/
-	
-
-	
-	
 	map<string, string> GetUserFriendlyVariableNames()
 	{
 		return userFriendlyKeys;
@@ -119,6 +90,7 @@ class MCF_JsonManager: JsonApiStruct
 		for (int i = 0; i < keys.Count(); i++)
 			currentSettings.Insert(keys[i], values[i]);
 
+		SetDone();
 
 		return currentSettings;
 
@@ -229,6 +201,7 @@ class MCF_JsonManager: JsonApiStruct
 		
 		PackToFile(settingsFileName);
 
+		SetDone();
 	
 	}
 	

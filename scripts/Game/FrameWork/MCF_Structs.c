@@ -4,17 +4,19 @@ class VariableInfo
 	string userFriendlyName;
 	string variableValue;
 	EFilterType type;
+	bool show;
 	
 	string category;
 	//int index;
 	
-	void VariableInfo(string ufn, string vv, EFilterType t = EFilterType.TYPE_STRING, string c = "")
+	void VariableInfo(string ufn, string vv, EFilterType t = EFilterType.TYPE_STRING, string cat = "", bool showVar = true)
 	{
 		this.userFriendlyName = ufn;
 		this.variableValue = vv;
 		this.type = t;
 		
-		this.category = c;
+		this.category = cat;
+		this.show = showVar;
 		//this.index = id;
 	}
 

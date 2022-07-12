@@ -2,6 +2,7 @@ class MCF_SettingsManager
 {
 	//Add callback to add a class? 
 	
+#define DEBUG_MCF
 	
 	
 	static ref map<string, ref MCF_JsonManager> settingsList;
@@ -10,15 +11,18 @@ class MCF_SettingsManager
 	
 	
 	
-	
-	//maybe init somewhere in the game code... Let's init it from BDR for now, but it's to be fixed before going public
 	void MCF_SettingsManager()
 	{
 		Print("SettingsManager initialized");
 	}
 	
 	
+	void ~MCF_SettingsManager()
+	{
+		//should relase the json... I guess? 
+		//settingsList.Clear();
 	
+	}
 	static MCF_SettingsManager GetInstance()
 	{	
 		
@@ -38,66 +42,52 @@ class MCF_SettingsManager
 	}
 	
 	/* Will return the current settings list */
-	map<string, string> Setup(string mod_id, string fileNameJson, OrderedVariablesMap variablesToSet)
+	void Setup(string mod_id, string fileNameJson, OrderedVariablesMap variablesToSet)
 	{
 		MCF_JsonManager mcfJson = new MCF_JsonManager(fileNameJson);
 		if (!mcfJson.LoadFromFile(fileNameJson))
 			mcfJson.RegisterMap(variablesToSet);
 		
 
-		
+		//SHOULD CHECK IF IT'S IN GAME OR LOADING?
 		mcfJson.SetUserHelpers(variablesToSet);	
+		
+		// in game
+		#ifndef WORKBENCH
 		AddJsonManager(mod_id, mcfJson);
+		#endif
 		
-		
-			
-		
-		
-		
-		return mcfJson.GetMapFromJson();
 
 	}
 	
 	
-	event void ReloadSettings()
-	{
-		Print("will reload stuff");
-	}
-	
-	
-	
-	/*(map<string, string> Setup(string mod_id, string fileNameJson, map<string, string> defaultValues, array<string> userFriendlyVarNames)
-	{
-	
-		MCF_JsonManager mcfJson = new MCF_JsonManager(fileNameJson);
-
-		map<string, string> settings = new map<string, string>;
-		
-		
-		
-		
-		
-		if (!mcfJson.LoadFromFile(fileNameJson))
-			mcfJson.RegisterMap(defaultValues);
-		
-		
-		settings = mcfJson.GetMapFromJson();
-		mcfJson.SetupUserFriendlyVariableNames(defaultValues, userFriendlyVarNames);
-		AddJsonManager(mod_id, mcfJson);
-		
-		
-		return settings;
-		
-	}
-*/
 	
 	void AddJsonManager(string id, MCF_JsonManager mod)
 	{
 		
-		#ifdef DEBUG_MCF
-		Print("Adding " + id + " to MCF");
-		#endif
-		settingsList.Insert(id, mod);
+		if (settingsList.Count() > 0)
+		{
+		
+			if (settingsList.Get(id) != null)
+			{
+				Print("NOT NULL!");
+				Print(id);
+			}
+			else
+			{
+				#ifdef DEBUG_MCF
+				Print("Adding " + id + " to MCF");
+				#endif
+				settingsList.Set(id, mod);
+			}
+		
+		}
+		else
+		{
+			Print("First settings!");
+			settingsList.Set(id,mod);
+		}
+
 		
 	}
 	
