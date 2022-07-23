@@ -7,7 +7,6 @@ class MCF_SettingsManager
 	
 	static ref map<string, ref MCF_JsonManager> settingsList;
 	
-	protected static ref MCF_SettingsManager instance;
 	protected static bool toBeInit = true;
 
 	
@@ -17,68 +16,36 @@ class MCF_SettingsManager
 		
 		if (toBeInit)
 		{
-			instance = new MCF_SettingsManager();
 			settingsList = new map<string, ref MCF_JsonManager>;
 			toBeInit = false;
 		}
 		
 		
 		MCF_JsonManager mcfJson = new MCF_JsonManager(fileNameJson);
+		
+		
+		#ifndef WORKBENCH
 		if (!mcfJson.LoadFromFile(fileNameJson))
+		#endif 
 			mcfJson.RegisterMap(variablesToSet);
 		
-
+		
 		//SHOULD CHECK IF IT'S IN GAME OR LOADING?
 		mcfJson.SetUserHelpers(variablesToSet);	
 		
 		
 		if (settingsList.Count() > 0)
 		{
-			Print("Settings list > 0");
-			if (settingsList.Get(mod_id) != null)
-			{
-				Print("mod present");
-			}
-			else 
-			{
+			if (settingsList.Get(mod_id) == null)
 				settingsList.Insert(mod_id, mcfJson);
-			}
-		
+
 		}
 		else 
-		{
-			Print(" Settings list is empty");
-			Print("Inserting " + mod_id);
-			Print("Inserting " + mcfJson);
 			settingsList.Insert(mod_id, mcfJson);
 		
-		}
+		
 
-		/*
-		// Add the Json manager to the list
-		if (settingsList.Count() > 0)
-		{
-		
-			if (settingsList.Get(mod_id) != null)
-			{
-				Print("NOT NULL!");
-				Print(mod_id);
-			}
-			else
-			{
-				#ifdef DEBUG_MCF
-				Print("Adding " + mod_id + " to MCF");
-				#endif
-				settingsList.Set(mod_id, mcfJson);
-			}
-		
-		}
-		else
-		{
-			Print("First settings!");
-			settingsList.Set(mod_id, mcfJson);
-		}
-		*/
+
 	}
 	
 	
