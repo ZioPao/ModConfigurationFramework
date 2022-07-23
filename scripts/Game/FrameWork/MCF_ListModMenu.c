@@ -66,11 +66,8 @@ class MCF_ListModMenu : SCR_SettingsSubMenuBase
 		}
 
 		
-		
-				
-		MCF_SettingsManager tempSettingsManager = MCF_SettingsManager.GetInstance();
-		
-		map<string, ref MCF_JsonManager> mapCurrentlyActiveMods = tempSettingsManager.GetSettingsList();
+
+		map<string, ref MCF_JsonManager> mapCurrentlyActiveMods = MCF_SettingsManager.GetSettingsList();
 	
 		
 		array<ref SCR_WorkshopItem> ret = SCR_AddonManager.GetInstance().GetAllAddons();

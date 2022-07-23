@@ -18,10 +18,10 @@ class MCF_JsonManager: JsonApiStruct
 	ref array<string> keys;
 	ref array<string> values;
 
-	void ~MCF_JsonManager()
-	{
-		//Print("Destroy me");
-	}
+	//void ~MCF_JsonManager()
+	//{
+		//delete currentSettings;
+	//}
 		
 	void MCF_JsonManager(string fileName)
 	{
@@ -51,7 +51,6 @@ class MCF_JsonManager: JsonApiStruct
 			Print("Loading failed");
 			#endif
 		}
-		SetDone();
 
 				
 	}
@@ -69,7 +68,7 @@ class MCF_JsonManager: JsonApiStruct
 	
 		SetOrder(variablesMap);				//Saves the order of the variables
 		PackToFile(settingsFileName);
-		SetDone();
+
 	}
 	
 
@@ -90,7 +89,6 @@ class MCF_JsonManager: JsonApiStruct
 		for (int i = 0; i < keys.Count(); i++)
 			currentSettings.Insert(keys[i], values[i]);
 
-		SetDone();
 
 		return currentSettings;
 
@@ -191,8 +189,6 @@ class MCF_JsonManager: JsonApiStruct
 		
 		foreach(string variableName, string variableValue : defaultVariables)
 		{
-			
-			
 			keys.Insert(variableName);
 			values.Insert(variableValue);
 		}
@@ -201,24 +197,7 @@ class MCF_JsonManager: JsonApiStruct
 		
 		PackToFile(settingsFileName);
 
-		SetDone();
 	
 	}
-	
 
-	
-	
-	
-	
-	///////////////////////////
-	override void OnError( int errorCode )
-	{
-		//Print("ERROR CODE " + errorCode.ToString());
-		
-	}
-	
-	override void OnSuccess( int errorCode )
-	{
-		//Print("SUCCESS CODE " + errorCode.ToString());
-	}
 }

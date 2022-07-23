@@ -58,10 +58,8 @@ class MCF_HandlerSingleMod : ScriptedWidgetComponent
 		
 		
 		
-		settingsManager = MCF_SettingsManager.GetInstance();
-		modVariables = settingsManager.GetModSettings(modId);	
-		
-		MCF_JsonManager jsonManager = settingsManager.GetJsonManager(modId);
+		modVariables = MCF_SettingsManager.GetModSettings(modId);	
+		MCF_JsonManager jsonManager = MCF_SettingsManager.GetJsonManager(modId);
 		//Print(modVariables);
 		
 		if (!jsonManager)
