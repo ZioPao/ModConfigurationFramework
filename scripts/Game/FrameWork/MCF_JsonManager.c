@@ -67,7 +67,11 @@ class MCF_JsonManager: JsonApiStruct
 
 	map<string, string> GetMapFromJson()
 	{
+		
+		//todo not sure why it crashes on the workbench when using loadfromfile and reloading scripts.. Some kind of mem leak?
+		#ifndef WORKBENCH
 		LoadFromFile(settingsFileName);
+		#endif 
 		
 		currentSettings = new map<string, string>();		//reinit 
 		
@@ -181,9 +185,9 @@ class MCF_JsonManager: JsonApiStruct
 		}
 		
 		
-		
+		#ifndef WORKBENCH
 		PackToFile(settingsFileName);
-
+		#endif
 	
 	}
 

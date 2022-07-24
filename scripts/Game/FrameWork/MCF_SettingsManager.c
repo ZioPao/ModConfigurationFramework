@@ -22,17 +22,18 @@ class MCF_SettingsManager
 		
 		
 		MCF_JsonManager mcfJson = new MCF_JsonManager(fileNameJson);
+		mcfJson.SetUserHelpers(variablesToSet);	
 		
 		
 		#ifndef WORKBENCH
 		if (!mcfJson.LoadFromFile(fileNameJson))
-		#endif 
 			mcfJson.RegisterMap(variablesToSet);
+		#else 
+		mcfJson.RegisterMap(variablesToSet);
+		mcfJson.ResetDefaultValues();		//to make it functional in the workbench
+		#endif 	
 		
-		
-		//SHOULD CHECK IF IT'S IN GAME OR LOADING?
-		mcfJson.SetUserHelpers(variablesToSet);	
-		
+
 		
 		if (settingsList.Count() > 0)
 		{
