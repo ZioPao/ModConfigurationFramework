@@ -38,11 +38,10 @@ class MCF_EditBoxComponent : SCR_EditBoxComponent
 				{
 					filter.SetCharacterLimitFilter(1);
 					filter.SetPunctuationFilter(false);
-					filter.SetNumberFilter(false);
+					filter.SetNumberFilter(true);
 					filter.SetASCIIFilter(false);
 					filter.SetUTFMultiByteFilter(false);
-					//filter.SetWhitelistFilter("ABC123");
-					
+					break;
 					
 					//TODO ADD BLACKLIST! ONLY 0 AND 1!
 					break;
