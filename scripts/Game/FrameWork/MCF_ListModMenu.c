@@ -72,13 +72,17 @@ class MCF_ListModMenu : SCR_SettingsSubMenuBase
 		
 		array<ref SCR_WorkshopItem> ret = SCR_AddonManager.GetInstance().GetAllAddons();
 		
-		foreach (SCR_WorkshopItem item : ret)
+		if (ret)
 		{
-			if (item.GetEnabled() && mapCurrentlyActiveMods.Get(item.GetId()))
-			{					
-				currentlyEnabledAddons.Insert(item);
+			foreach (SCR_WorkshopItem item : ret)
+			{
+				if (item.GetEnabled() && mapCurrentlyActiveMods.Get(item.GetId()))
+				{					
+					currentlyEnabledAddons.Insert(item);
+				}
 			}
 		}
+
 
 		
 		//we need to find compatible only mods!!
